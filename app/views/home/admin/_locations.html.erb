@@ -1,8 +1,0 @@
-<% if can?(:manage, Location) %>
-<%= content_tag :div, class: 'row dashboard' do %>
-<i class='fa fa-3x fa-map-marker'></i><span>Locations</span>
-<ul>
-  <li><%= link_to(content_tag(:i, " New", class: 'fa fa-plus'), new_location_path) %></li>
-  <li><%= link_to(content_tag(:i, " List", class: 'fa fa-list'), locations_path) %></li>
-</ul>
-<% end end %>

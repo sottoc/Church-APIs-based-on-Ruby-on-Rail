@@ -1,9 +1,0 @@
-<% if can?(:manage, Event) %>
-<%= content_tag :div, class: 'row dashboard' do %>
-<i class='fa fa-3x fa-calendar'></i><span>Events</span>
-<ul>
-  <li><%= link_to(content_tag(:i," New", class:'fa fa-plus'), new_event_path) %></li>
-  <li><%= link_to(content_tag(:i, " List", class: 'fa fa-list'), admin_events_path) %></li>
-  <li><%= link_to(content_tag(:i, " Types", class: 'fa fa-folder-open-o'), event_types_path) if can?(:manage, EventType) %></li>
-</ul>
-<% end end%>

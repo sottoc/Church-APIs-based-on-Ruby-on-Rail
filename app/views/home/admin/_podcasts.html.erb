@@ -1,8 +1,0 @@
-<%  if can?(:manage, Podcast)%>
-<%= content_tag :div, class: 'row dashboard' do %>
-<i class='fa fa-3x fa-microphone'></i><span>Podcasts</span>
-<ul>
-  <li><%= link_to(content_tag(:i, " New", class: 'fa fa-plus'), new_podcast_path) %></li>
-  <li><%= link_to(content_tag(:i, " List", class: 'fa fa-list'), podcasts_path) %></li>
-</ul>
-<% end end %>
