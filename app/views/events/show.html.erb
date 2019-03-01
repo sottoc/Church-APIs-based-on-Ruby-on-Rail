@@ -1,0 +1,36 @@
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<%= image_tag @event.image.url(:medium) %>
+
+<div class: 'white box'>
+  <%= @event.description %>
+</div>
+
+<p>
+  <%= @event.location.name unless @event.location.nil? %>
+</p>
+
+  <strong>HashTag:</strong>
+  <%= @event.hash_tag if @event.hash_tag %>
+</p>
+<p>
+  <strong>Facebook:</strong>
+  <%= @event.facebook if @event.facebook %>
+</p>
+
+
+<p>
+  <strong>Starttime:</strong>
+  <%= @event.starttime %>
+</p>
+
+<p>
+  <strong>Endtime:</strong>
+  <%= @event.endtime %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

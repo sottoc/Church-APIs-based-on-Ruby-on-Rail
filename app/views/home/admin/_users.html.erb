@@ -1,0 +1,7 @@
+<%= content_tag :div, class: 'row dashboard' do %>
+<i class='fa fa-3x fa-users'></i><span>Users</span>
+<ul>
+  <li><%= link_to(content_tag(:i, " My Account", class: 'fa fa-cog'), edit_user_registration_path) %></li>
+  <li><%= link_to(content_tag(:i, " List", class: 'fa fa-list'), users_path) if can?(:manage, User) %></li>
+</ul>
+<% end %>

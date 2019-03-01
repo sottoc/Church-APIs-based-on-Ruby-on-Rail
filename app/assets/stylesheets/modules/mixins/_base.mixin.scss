@@ -1,0 +1,154 @@
+/*************************************************
+ * Mixin : Base
+ ************************************************/
+
+/*!***********************************************
+ *
+ *    Built by @iamjbecker
+ *    Released open source under MIT License.
+ *    www.iamjbecker.com
+ *
+ *************************************************/
+
+@mixin logo {
+  display: inline-block;
+  width:200px;
+  height: 50px;
+  background-repeat: no-repeat !important;
+}
+
+@mixin logo--black { background-image: image-url('logo/black-inline.svg'); }
+@mixin logo--white { background-image: image-url('logo/white-inline.svg'); }
+@mixin logo--grey  { background-image: image-url('logo/grey-horz.svg'); }
+
+
+@mixin trans($speed) {
+  -webkit-transition: all $speed ease;
+  -moz-transition: all $speed ease;
+  -o-transition: all $speed ease;
+  -ms-transition: all $speed ease;
+  transition: all $speed ease;
+}
+
+@mixin trans-opacity($speed) {
+  -webkit-transition: opacity $speed ease;
+  -moz-transition: opacity $speed ease;
+  -o-transition: opacity $speed ease;
+  -ms-transition: opacity $speed ease;
+  transition: opacity $speed ease;
+}
+
+
+@mixin breakpoint($point) {
+  @if $point == xxlarge {
+    @media only screen and (min-width: 120.063em) { @content; }
+  }
+
+  @else if $point == xlarge {
+    @media only screen and (min-width: 90.063em) { @content; }
+  }
+
+  @else if $point == large {
+    @media only screen and (min-width: 64.063em) { @content; }
+  }
+
+  @else if $point == medium {
+    @media only screen and (min-width: 1023px) { @content; }
+  }
+
+  @else if $point == small {
+    @media only screen { @content; }
+  }
+
+}
+
+@mixin image-2x($image, $width, $height) {
+  @media (min--moz-device-pixel-ratio: 1.3),
+         (-o-min-device-pixel-ratio: 2.6/2),
+         (-webkit-min-device-pixel-ratio: 1.3),
+         (min-device-pixel-ratio: 1.3),
+         (min-resolution: 1.3dppx) {
+    /* on retina, use image that's scaled by 2 */
+    background-image: url($image);
+    background-size: $width $height;
+  }
+}
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+// Single side border-radius
+
+@mixin border-radius-top($radius) {
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+   -webkit-border-top-left-radius: $radius;
+   border-top-left-radius: $radius;
+   background-clip: padding-box;
+}
+
+@mixin border-radius-right($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+     -webkit-border-top-right-radius: $radius;
+     border-top-right-radius: $radius;
+     background-clip: padding-box;
+}
+
+@mixin border-radius-bottom($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+   -webkit-border-bottom-left-radius: $radius;
+   border-bottom-left-radius: $radius;
+   background-clip: padding-box;
+}
+
+@mixin border-radius-left($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+     -webkit-border-top-left-radius: $radius;
+     border-top-left-radius: $radius;
+     background-clip: padding-box;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin font-size($sizeValue: 12 ){
+  font-size: $sizeValue + px; //fallback for old browsers
+  font-size: (0.125 * $sizeValue) + rem;
+}
+
+@mixin line-height($heightValue: 12 ){
+  line-height: $heightValue + px; //fallback for old browsers
+  line-height: (0.125 * $heightValue) + rem;
+}
+
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%clearfix {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}

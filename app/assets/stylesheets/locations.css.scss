@@ -1,0 +1,461 @@
+/*************************************************
+
+Copyright (c) 2015 C3 Church.
+All Rights Reserved.
+
+www.c3church.ca
+
+*************************************************/
+
+// Basically all the parts of the scss will be broken down into their BEM modules.
+// The _mainMenu.componenet is already done in it's right spot.
+// BEM shoiuld explain what code goes where. Basically any page-specific designs
+// go under a .p-pageName(home)-section(nextSteps)__sectionPart(header).
+// This should make sense. Let me know if not.
+@import "modules/__variables__";
+$dark: #2b303a;
+$light: #ffffff;
+$green: #95bf74;
+$lightblue: #92dce5;
+$darkblue: #258ea6;
+.image-cropper {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.p-all_locations {
+    margin-top: 75px;
+    padding: 50px;
+    section.all_locations {}
+    .full.width {
+        width: auto;
+        height: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        display: inline;
+        @media only screen and (min-width: $tablet) {
+            width: 30.6666666667%!important;
+            display: inline-block;
+        }
+        img.logo {
+            width: auto;
+        }
+    }
+    .location-cropper {
+        @media only screen and (max-width: $mobile) {
+            width: 225px;
+            height: 225px;
+        }
+        width: 300px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        margin: 15px auto;
+    }
+    .church.name {
+        text-align: center;
+        display: block;
+        margin: 15px auto;
+    }
+    h1 {
+        font-family: "proxima-nova";
+        line-height: 1;
+        text-align: left;
+        font-weight: 500;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        margin-bottom: 0;
+    }
+}
+
+.p-location {
+    #font-family: "proxima-nova";
+    #font-weight: 100;
+    padding-top: 75px;
+    h1,
+    h2,
+    h3 {
+        font-family: "proxima-nova";
+        line-height: 1;
+        text-align: left;
+        font-weight: 500;
+        letter-spacing: 6px;
+        margin-bottom: 0;
+    }
+    h1 {
+        text-transform: uppercase;
+    }
+    h2 {
+        line-height: 1;
+        text-align: left;
+        font-weight: 100;
+        font-size: 1em;
+        text-transform: uppercase;
+    }
+    h3 {
+        font-size: 1em;
+    }
+    p {
+        line-height: 1;
+    }
+    .one.columns {
+        width: 4.66666666667%!important;
+    }
+    .two.columns {
+        width: 13.3333333333%!important;
+    }
+    .three.columns {
+        width: 22%!important;
+    }
+    .four.columns {
+        width: 30.6666666667%!important;
+    }
+    .five.columns {
+        width: 39.3333333333%!important;
+    }
+    .six.columns {
+        width: 48%!important;
+    }
+    .seven.columns {
+        width: 56.6666666667%!important;
+    }
+    .eight.columns {
+        width: 65.3333333333%!important;
+    }
+    .nine.columns {
+        width: 74.0%!important;
+    }
+    .ten.columns {
+        width: 82.6666666667%!important;
+    }
+    .eleven.columns {
+        width: 91.3333333333%!important;
+    }
+    .twelve.columns {
+        width: 100%!important;
+    }
+    section.hero {
+        min-height: 60vh;
+        padding-bottom: 5px;
+        img.logo {
+            display: block;
+            padding-top: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 65%;
+        }
+    }
+    section.service {
+        margin-top: 12vh;
+        width: 50%;
+        .serviceTimes {
+            margin: 15px;
+            font-size: 12px;
+            padding: 5px;
+            color: white;
+            background-color: black;
+            line-height: 1.2;
+            font-weight: 100;
+            .join {
+                font-style: italic;
+            }
+            .day {
+                font-size: 18px;
+            }
+        }
+    }
+    section.welcome {
+        padding: 45px 45px 10px 45px;
+        img.pastor-photo {
+            max-width: 23vw;
+            float: right;
+            -ms-transform: rotate(-7deg);
+            /* IE 9 */
+            -webkit-transform: rotate(-7deg);
+            /* Chrome, Safari, Opera */
+            transform: rotate(-7deg);
+        }
+        p {
+            padding-right: 30vw;
+            font-size: 14px;
+        }
+        img.signature {
+            float: left;
+            padding-right: 10px;
+        }
+        div.social {
+            text-align: center;
+        }
+        img.social {
+            width: 36px;
+            padding: 5px;
+        }
+        div.signature {
+            line-height: 1;
+            min-height: 75px;
+        }
+    }
+    section.directions {
+        background: $darkblue;
+        padding: 25px;
+        img.logo {
+            float: right;
+            width: 40%;
+        }
+        h3 {
+            font-weight: lighter!important;
+            margin-bottom: 5px;
+            font-size: 1.5em;
+            margin-top: 5px;
+        }
+        div.directions-body {
+            margin-left: 15px;
+        }
+        div.details {
+            margin-left: 15px;
+            font-weight: 400;
+            line-height: 1;
+            a {
+                color: inherit!important;
+            }
+        }
+        #map {
+            margin-top: 15px;
+            width: 100%;
+            height: 200px;
+            background-color: grey;
+        }
+    }
+    section.podcasts {
+        padding: 15px;
+        background-image: image-url("podcast.jpg");
+        background-size: cover;
+        div.playlist {
+            background: $light; //min-height: 150px;
+            padding: 15px;
+        }
+        h1,
+        h2 {
+            color: white;
+        }
+        h2 {
+            margin-left: 30px;
+        }
+        div.audio {
+            overflow: hidden;
+        }
+        audio {
+            width: 100%;
+        }
+        .container {
+            width: 100%;
+        }
+        span.author {
+            font-weight: 400;
+        }
+        span.date {
+            font-size: 12px;
+            color: $green;
+            text-align: right;
+            float: right;
+            font-weight: 400;
+        }
+        div.title {
+            display: table;
+            height: 100px;
+            width: 100%;
+        }
+        span.title {
+            padding: 12px;
+            font-weight: 300;
+            display: table-cell;
+            vertical-align: middle;
+            line-height: 1;
+            font-size: 22px;
+        }
+    }
+    section.connect {
+        background: $green;
+        padding: 25px;
+        h1,
+        h2 {
+            color: white;
+        }
+        img {
+            display: inline;
+            margin: 0 auto;
+        }
+        h2 {
+            margin-left: 30px;
+        }
+        .name {
+            color: white;
+            font-size: 2.5em;
+            font-weight: 100;
+            line-height: 1;
+        }
+        .container {
+            margin-left: 0px;
+            padding: 10px 0px 10px 0px;
+        }
+        .details {
+            color: $darkblue;
+            margin-left: 25px;
+            font-weight: 400;
+            line-height: 1;
+        }
+    }
+    section.coming {
+        padding: 25px;
+        h2 {
+            margin-left: 30px;
+        }
+        .container {
+            margin-left: 0px;
+            padding: 10px 0px 10px 0px;
+            width: 100%;
+        }
+        .name {
+            font-size: 1.8em;
+            font-weight: 100;
+            line-height: 1;
+        }
+        .date {
+            margin-left: 15px;
+        }
+    }
+}
+
+@media only screen and (min-width: $mobile) and (orientation: landscape) {
+    .image-cropper {
+        margin-left: 50px;
+    }
+    .p-location {
+        section.hero {
+            min-height: 0vh;
+            img.logo {
+                display: block;
+                padding-top: 0px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 35%;
+            }
+        }
+        section.coming {
+            img {
+                margin-left: 50px;
+            }
+        }
+        section.directions {
+            img.logo {
+                margin-top: -130px;
+            }
+            #map {
+                width: 75%;
+                height: 150px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $tablet) and (orientation: landscape) {
+    .p-location {
+        .image-cropper {
+            width: 100px;
+            height: 100px;
+        }
+        h2 {
+            margin-left: 30px;
+        }
+        section.service {
+            width: 35%;
+            .serviceTimes {
+                font-size: 18px;
+                .day {
+                    font-size: 24px;
+                }
+            }
+        }
+        section.welcome {
+            padding: 120px 120px 10px 120px;
+            p {
+                padding-right: 30vw;
+                margin-left: 50px;
+                font-size: 17px;
+            }
+            img.signature {
+                margin-left: 50px;
+            }
+        }
+        section.directions {
+            padding: 120px;
+            img.logo {
+                width: 30%;
+                margin-top: -100px;
+            }
+            #map {
+                height: 150px;
+            }
+        }
+        section.podcasts,
+        section.connect,
+        section.coming {
+            padding: 120px;
+        }
+        section.connect {
+            .name {
+                font-size: 3em;
+            }
+            .details {
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $desktopHD) {
+    .p-location {
+        section.hero {
+            img.logo {
+                width: 28%;
+                margin-top: 0px;
+            }
+        }
+        section.welcome {
+            padding: 200px 200px 100px 200px;
+        img.social {
+            width: 48px;
+        }
+        }
+        section.service {
+            width: 25%;
+            .serviceTimes {
+                font-size: 20px;
+                .day {
+                    font-size: 26px;
+                }
+            }
+        }
+        section.directions {
+            padding: 200px;
+            img.logo {
+                width: 25%;
+                margin-top: -200px;
+                margin-bottom: 50px;
+            }
+            #map {
+                height: 300px;
+                width: 100%;
+            }
+        }
+        section.podcasts, section.connect, section.coming {
+            padding: 200px;
+        }
+    }
+}

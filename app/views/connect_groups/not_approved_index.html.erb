@@ -1,0 +1,40 @@
+<% provide(:title, "Connect Groups") %>
+
+<div class="p-connect_groups">
+
+
+  <section class='o-pageContent p-events__content'>
+    <div class='o-pageContent__section p-events-content__connect_groups container'>
+      <% @connect_groups_not_approved.each_slice(3).each do |row| %>
+      <div class='row'>
+        <% row.each do |group| %>
+        <% if group %>
+        <div class='four columns o-event center'>
+          <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?size=150x150&zoom=14&sensor=false&markers=#{group.latitude}%2C#{group.longitude}" %>
+          <div class='o-event__content'>
+            <%= content_tag :h2, group.name if group.name %>
+            <%= content_tag :span, group.leader, class: 'leader' if group.leader %>
+            <%= content_tag :span, group.address, class: "type" if group.address %>
+            <%= content_tag :span, group.location.name + ' Campus', class: "type" if group.location %>
+
+            <%= content_tag :span, number_to_phone(group.phone.to_i, area_code: true), class:'phone' if group.phone %>
+            <div class='meta'>
+              <%#= content_tag :span, event.starttime.strftime("%B %e, %Y"), class: "date" if event.starttime %>
+              <%= content_tag :span, Date::DAYNAMES[group.day.to_i].pluralize, class: 'weekday' if group.day %>
+              <%= content_tag :span, group.time.strftime("%l:%M %P"), class: "time" if group.time %>
+            </div>
+            <div class='admin'>
+              <% if user_signed_in? && can?(:manage, group) %>
+              <%= link_to content_tag(:span, 'edit', class: 'edit'), edit_connect_group_path(group) %>
+              <%= link_to content_tag(:span, 'delete', class: 'delete'), group, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to content_tag(:span, 'new', class: 'new'), new_connect_group_path %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </section>

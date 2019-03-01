@@ -1,0 +1,33 @@
+<% if content_for(:navbarClass) %>
+<% navbarClass = yield(:navbarClass) + ' c-navbar js-navbar' %>
+<div class="<%= navbarClass %>" >
+  <% else %>
+  <div class="c-navbar js-navbar">
+    <% end %>
+
+    <div class='container'>
+      <div class='c-navbar__bar'>
+        <%= link_to root_path, id: 'logo' do %>
+        <%#= image_tag 'logo-landscape.png', class: 'logo' %>
+        <div class="c-logo"></div>
+        <% end %>
+        <%= link_to '', '#', id: 'toggle-menu', class: 'js-menuToggle c-navbar-bar__menuToggle' %>
+      </div>
+
+      <nav class='c-navbar__menu js-navbar-menu'>
+        <ul>
+          <li class='has-dropdown'><%= link_to 'New?', new_path %></li>
+          <!--<li class='has-dropdown'><%= link_to 'Next Steps', nextstep_path %></li>-->
+          <li><%= link_to 'Connect Groups', connect_groups_path %></li>
+          <li><%= link_to 'Give', new_contribution_path %></li>
+          <li class='has-dropdown'><%= link_to 'Locations',all_locations_path %></li>
+          <li><%= link_to 'Events', events_path %></li>
+          <li class='has-dropdown'><%= link_to 'Media', media_path %></li>
+
+          <%= content_tag(:li, link_to('Admin', admin_path)) if user_signed_in? && !current_user.has_role?( :user) %>
+          <%= content_tag(:li, link_to('Account', edit_user_registration_path)) if user_signed_in? && current_user.has_role?(:user)%>
+
+        </ul>
+      </nav>
+    </div>
+  </div>

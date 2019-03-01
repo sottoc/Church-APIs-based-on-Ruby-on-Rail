@@ -1,0 +1,116 @@
+<% provide(:title, "Home") %>
+  <% provide(:description, "C3 Church is a charismatic non-denominational church in central British Columbia with locations in Kelowna and Revelstoke. No matter who you are or where you come from, you are welcome here. (Christian City Church)") %>
+    <% provide(:navbarClass, "no-background") %>
+
+      <div class="p-home">
+        <section class='c-header'>
+          <div class='c-header__overlay'></div>
+          <div class='c-header__slider'>
+            <h1>One Church<br>More Than One Location</h1>
+            <a href='#youreInvited'><i class='fa fa-chevron-down'></i></a>
+          </div>
+        </section>
+
+        <section class='o-pageContent p-home__content'>
+          <a name='youreInvited'></a>
+
+          <div class='o-pageContent__section p-home-content__youreInvited'>
+            <div class='container'>
+              <div class='row'>
+                <div class='ten columns offset-by-one'>
+                  <h2 class='boxed boxed--white'>You're Invited</h2>
+                  <div class='o-serviceList'>
+                    <% @listings.each do |location| %>
+                      <div class='o-serviceList__service'>
+                        <span class='o-serviceList-service__city'><%= location.name %></span>
+                        <span class='divider'>/</span>
+                        <span class='o-serviceList-service__day'><%= location.day %></span>
+                        <span class='divider'>/</span>
+                        <span class='o-serviceList-service__timeLocation'><%= location.times %></span>
+                      </div>
+                      <% end %>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class='o-pageContent__section p-home-content__vision'>
+            <div class='container'>
+              <div class='row'>
+                <div class='ten columns offset-by-one'>
+                  <h2 class='boxed'>Finding people outside church, bringing them inside and helping them become who they were born to be!</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class='o-splitImage o-splitImage--contentInside p-home-content__expect'>
+            <div class='o-splitImage__one  p-home-content-expect__img1'>
+              <div class='splitImage-image__content'>
+                <h2 class='boxed'>What to Expect</h2>
+                <p>Whoever you are, you belong here.</p>
+                <%= link_to content_tag(:button,'find out more'), expect_path %>
+              </div>
+
+              <div class="splitImage-image__overlay"></div>
+            </div>
+
+            <div class='o-splitImage__two p-home-content-expect__img2'>
+              <div class='splitImage-image__content'>
+                <h2 class='boxed'>C3 Kids</h2>
+                <p>Kids programs that are safe, clean, and fun to put the parents at ease and moments that are fun and memorable
+                  to keep the kids talking.</p>
+                <%= link_to content_tag(:button, 'find out more'), kids_path %>
+              </div>
+
+              <div class="splitImage-image__overlay"></div>
+            </div>
+          </div>
+
+
+          <!-- <div class='o-pageContent p-home-content__nextstep'>
+      <%= image_tag 'nextstep.jpg' %>
+
+      <div class='container'>
+        <p class='large'>When you walk in the doors of C3 Church, we understand that you might have questions about faith, God, and what we believe. NEXT STEPS is designed to answer some of these questions. You will be equipped and empowered to set a solid foundation for your future at C3, learning about yourself, teams and <%= link_to 'connect groups', connect_groups_path %>.</p>
+
+        <%= link_to content_tag(:button, 'find out more'), nextstep_path  %>
+        <br><br><br><br>
+      </div>
+    </div>
+-->
+          <div class='o-pageContent__section p-home-content__locations'>
+            <div class='container'>
+              <div class='row'>
+                <div class='ten columns offset-by-one'>
+                  <h2 class='boxed boxed--white'>We'd love to meet you.</h2>
+                  <br><br><br>
+                  <div class='row o-locationList'>
+                    <% @listings.each do |location| %>
+                      <div class='six columns o-locationList__location o-locationList__location--spacerUnder'>
+
+
+                        <h3 class='o-locationList-location__name'>
+                          <%= image_tag(location.inline_logo.url(:original), class:'location')%>
+                        </h3>
+                        <span class='o-locationList-location__divider'></span>
+                        <address class='o-locationList-location__address'>
+                          <%= location.address %>
+                        </address>
+                        <a class='o-locationList-location_phone' tabIndex="-1" href="tel:<%= location.phone %>">
+                          <%= location.phone %>
+                        </a>
+                        <span class='o-locationList-location__times'><strong><%= location.times %></strong></span>
+                        <a href='https://www.google.ca/maps/dir//C3+Church,+<%=location.address%>,+<%=location.city%>,+<%=location.province%>,+<%=location.code%>/@<%=location.latitude%>,<%=location.longitude%>'
+                          class='button' target='_blank'>Get Directions</a>
+
+                      </div>
+                        <% end %>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>

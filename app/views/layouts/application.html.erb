@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= content_for?(:title) ? yield(:title) + " | C3 Church Kelowna/Revelstoke - You Becoming You!": "C3 Church Kelowna/Revelstoke - You Becoming You!" %></title>
+  <meta name='description' content= '<%= content_for?(:description) ? yield(:description) : "C3 Church is based in the BC Interior with locations in Kelowna and Revelstoke. We are a church where You Become You. Everyone is welcome." %>' >
+  <script src="https://use.typekit.net/fch6vdb.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<%= render 'application/favicon' %>
+  <%= stylesheet_link_tag "application", media: "all", async: true %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+  <header id='top'>
+    <%= render 'layouts/mainMenu' %>
+  </header>
+
+  <main role="main" id='page'>
+    <%= render 'layouts/messages' %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+  </main>
+  <%= javascript_include_tag "application", async: false %>
+
+</body>
+</html>

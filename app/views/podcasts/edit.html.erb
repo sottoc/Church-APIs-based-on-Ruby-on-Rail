@@ -1,0 +1,14 @@
+<% provide(:title, "Editing #{@podcast.title} Podcast") %>
+
+<div class="p-podcasts">
+
+
+  <section class='o-pageContent p-podcasts__content'>
+    <div class='o-pageContent__section p-podcasts-content__podcasts container'>
+
+<%= render 'form' %>
+<%= link_to(content_tag(:i, ' Show', class: 'fa fa-search'), @podcast) %> |
+<%= link_to(content_tag(:i, ' Back', class: 'fa fa-hand-o-left'), :back) %>
+</div>
+</section>
+</div>
