@@ -1,0 +1,36 @@
+/*************************************************
+ * Mixin : Animations
+ ************************************************/
+
+ // @mixin animation($animation, $content) {
+ //  @each $animation, $content in collection {
+          
+ //  }
+ // }
+
+
+@mixin animation($animation, $value) {
+  @if $animation == "transition" {
+    -webkit-transition: ease all $value;
+       -moz-transition: ease all $value;
+        -ms-transition: ease all $value;
+         -o-transition: ease all $value;
+            transition: ease all $value;
+
+
+  } @elseif $animation == "scale" {
+    -webkit-transform: scale($value);
+       -moz-transform: scale($value);
+        -ms-transform: scale($value);
+         -o-transform: scale($value);
+            transform: scale($value);
+
+
+  } @elseif $animation == "blur" {
+    -webkit-filter: blur($value);
+       -moz-filter: blur($value);
+        -ms-filter: blur($value);
+         -o-filter: blur($value);
+            filter: blur($value);
+  }
+}

@@ -1,0 +1,37 @@
+<% provide(:title, "Admin") %>
+
+<div class="p-admin">
+
+
+	<section class='o-pageContent p-admin__content'>
+
+		<div class='o-pageContent__section p-admin-content__main container'>
+			<% unless current_user.has_role?( :user) %>
+			<div class='menu'>
+				<%= link_to(content_tag(:i, "", class: 'fa fa-2x fa-calendar'), ajax_load_events_path, title: 'events', remote: true) if can?(:manage, Event)%>
+				<%= link_to(content_tag(:i, "", class: 'fa fa-2x fa-map-marker'), ajax_load_locations_path, title: 'locations', remote: true) if can?(:manage, Location)%>
+				<%= link_to(content_tag(:i, "", class: 'fa fa-2x fa-microphone'), ajax_load_podcasts_path, title: 'podcasts', remote: true) if can?(:manage, Podcast)%>
+				<%= link_to(content_tag(:i, "", class: 'fa fa-2x fa-cogs'), ajax_load_connect_groups_path, title: 'connect groups', remote: true) if can?(:manage, ConnectGroup)%>
+				<%= link_to(content_tag(:i, "", class: 'fa fa-2x fa-users'), ajax_load_users_path, title: 'users', remote: true) %>
+				<%= link_to(content_tag(:i, "", class: 'fa fa-power-off fa-2x'), destroy_user_session_path, title: 'logout', method: :delete) %>
+			</div>
+			<div class='admin-panel' id="admin-panel">
+				<% if current_user.has_role? :admin %>
+				<%= render partial: 'home/admin/events' %>
+				<% elsif current_user.has_role? :media%>
+				<%= render partial: 'home/admin/podcasts' %>
+				<% elsif current_user.has_role?(:pastor) || current_user.has_role?(:creative) %>
+				<%= render partial: 'home/admin/events' %>
+				<% end %>
+			</div>
+
+				<% else %>
+			<div class='row'>
+				<%= content_tag(:h2, 'You do not have sufficient privileges to access this page') %>
+			</div>
+				<% end %>
+		</div>
+
+	</section>
+
+</div>

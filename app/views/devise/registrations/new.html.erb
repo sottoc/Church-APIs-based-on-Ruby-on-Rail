@@ -1,0 +1,36 @@
+<% provide(:title, "Sign Up") %>
+
+<div class="p-podcasts">
+
+
+  <section class='o-pageContent p-podcasts__content'>
+    <div class='o-pageContent__section p-podcasts-content__podcasts container'>
+
+        <h3>Sign Up <%= resource_name.to_s.humanize %></h3>
+        <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
+        <%= devise_error_messages! %>
+        <%= content_tag :div, class: "row" do %>
+        <%= content_tag :div, class: 'six columns' do %>
+        <%= f.input :name, autofocus: true, label: false, placeholder: 'Name' %>
+        <% end %>
+        <%= content_tag :div, class: 'six columns' do %>
+        <%= f.input :email, label: false, placeholder: 'Email' %>
+        <% end %>
+        <% end %>
+        <%= content_tag :div, class: "row" do %>
+        <div class='twelve columns'>
+        </div>
+        <% end %>
+        <%= content_tag :div, class: "row" do %>
+        <%= content_tag :div, class: 'six columns' do %>
+        <%= f.input :password, :autocomplete => 'off', label: false, placeholder: 'Password' %>
+        <% end %>
+        <%= content_tag :div, class: 'six columns' do %>
+        <%= f.input :password_confirmation, label: false, placeholder: 'Confirm Password' %>
+        <% end %>
+      <% end %>
+    <%= f.submit 'Sign Up', :class => 'button' %>
+    <% end %>
+  </div>
+</section>
+</div>

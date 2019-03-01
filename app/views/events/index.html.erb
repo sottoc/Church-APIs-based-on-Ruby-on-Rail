@@ -1,0 +1,46 @@
+<% provide(:title, "Events") %>
+
+<div class="p-events">
+  <header class='o-pageHeader p-events__header'>
+    <div class='o-pageHeader__overlay'></div>
+    <h1>Events</h1>
+  </header>
+
+
+  <section class='o-pageContent p-events__content'>
+    <div class='o-pageContent__section p-events-content__events container'>
+
+      <% @current_events.each_slice(3).each do |group| %>
+      <div class='row'>
+        <% group.each do |event| %>
+        <% if event %>
+        <div class='four columns o-event'>
+          <%= content_tag :div, image_tag(event.image.url(:eventThumbnail)), class: "o-event__image" if event.image %>
+          <div class='o-event__content'>
+            <% if event.title %>
+            <%= content_tag :h2 do %>
+            <%= event.title %>
+            <%= content_tag(:span, link_to(content_tag(:i,'',class: 'fa fa-facebook'), event.facebook, target: '_blank'), class: 'facebook') if event.facebook && !event.facebook.blank?  %>
+            <% end %>
+            <% end %>
+            <%= content_tag :p, event.description if event.description %>
+            <%= content_tag :span, "in #{event.location.name}", class: "type" if event.location %>
+            <div class='meta'>
+              <%= content_tag :span, event.starttime.strftime("%B %e, %Y"), class: "date" if event.starttime %>
+              <%= content_tag :span, event.starttime.strftime("%l:%M %P"), class: "time" if event.starttime %>
+            </div>
+            <div class='admin'>
+              <% if user_signed_in? && can?( :manage, event) %>
+              <%= link_to content_tag(:span, 'edit', class: 'edit'), edit_event_path(event) %>
+              <%= link_to content_tag(:span, 'delete', class: 'delete'), event, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to content_tag(:span, 'new', class: 'new'), new_event_path %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </section>

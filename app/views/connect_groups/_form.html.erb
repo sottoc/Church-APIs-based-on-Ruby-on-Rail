@@ -1,0 +1,45 @@
+<%= simple_form_for(@connect_group) do |f| %>
+<%= f.error_notification %>
+
+<div class='row'>
+  <div class='twelve columns'>
+    <%= f.input :avatar, as: :file, label: 'Take a selfie for the directory' %>
+  </div>
+</div>
+<%= content_tag :div, class: 'row' do %>
+<% if can? :update, @connect_group %>
+<div class='three columns'>
+  <%= f.input :approved %>
+</div>
+<% end %>
+<div class='<%= (can? :update, @connect_group) ? "nine" : "twelve" %> columns'>
+  <%= f.input :name, placeholder: 'Group Name', label: false, input_html: { style: 'width: 100%'} %>
+</div>
+<div class='row'>
+  <div class='six columns'>
+    <%= f.input :leader, placeholder: 'Leader(s)', label: false, input_html: { style: 'width: 100%'} %>
+  </div>
+  <div class='six columns'>
+    <%= f.input :phone, placeholder: "Contact Phone", label: false, input_html: { style: 'width: 100%'} %>
+  </div>
+</div>
+<div class='row'>
+  <%= f.input :address, placeholder: "Address", label: false, input_html: { style: 'width: 100%'}  %>
+</div>
+<div class='row'>
+  <div class='four columns'>
+    <%= f.association :location, label: 'Campus' %>
+  </div>
+  <div class='four columns'>
+    <%= f.input :time %>
+  </div>
+  <div class='four columns'>
+    <%= f.input :day, collection: Date::DAYNAMES.each_with_index.to_a %>
+  </div>
+</div>
+<% end %>
+
+<%= content_tag :div, class: "form-actions" do %>
+<%= f.button :submit, class: 'podcast' %>
+<% end %>
+<% end %>

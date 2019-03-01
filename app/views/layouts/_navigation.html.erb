@@ -1,0 +1,15 @@
+<nav class='top-bar'>
+	<section class='top-bar-section left'>
+	<ul>
+		<li>
+			<%= link_to root_path, id: 'logo' do %>
+			<%= image_tag 'logo-landscape.png', class: 'logo' %>
+			<% end %>
+		</li>
+		<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+		<li ><%= link_to 'menu', '#', id: 'toggle-menu', class: 'menu-icon' %></li>
+	</ul>
+	</section>
+	<%= render 'layouts/navigation_links' %>
+</nav>
+</div>

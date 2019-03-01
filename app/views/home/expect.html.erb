@@ -1,0 +1,56 @@
+<% provide(:title, "What To Expect") %>
+
+<div class="p-expect">
+	<header class='o-pageHeader p-expect__header'>
+		<div class='o-pageHeader__overlay'></div>
+		<h1>What To Expect</h1>
+	</header>
+
+
+	<section class='o-pageContent p-expect__content'>
+
+
+		<div class='o-pageContent__section p-expect-content container'>
+			<h2>Anyone and everyone is welcome here...seriously!</h2>
+			<p>At C3 Church, you'll find a friendly, casual environment where people are excited to see you. We would like to give you a little idea of what to expect when you arrive at C3 Church, so all you have to do from here is come as you are and find out more for yourself!</p>
+
+			<h3>At a weekend service, you can expect:</h3>
+			<ul>
+				<li>Each service will last around 70 minutes.
+				<ul><li><i class='fa fa-quote-left'></i>We know you are busy and we want you to know we value you and your time.<i class='fa fa-quote-right'></i></li></ul>
+				</li>
+				<li>High-energy worship music.
+				<ul><li><i class='fa fa-quote-left'></i>A music session that will rattle your Grandma’s dentures where we invite everyone to stand and sing with the band (lyrics provided; grandmas allowed)<i class='fa fa-quote-right'></i></li></ul>
+				</li>
+				<li>Thought-provoking and engaging messages based on the Bible.
+				<ul><li><i class='fa fa-quote-left'></i>We are big on practical stuff that we can actually apply to our life this week.<i class='fa fa-quote-right'></i></li></ul>
+				</li>
+				<li>A place just for kids.
+				<ul><li><i class='fa fa-quote-left'></i>Each weekend C3 Kids, ages 4 and up, learn the truth about who God is and who they are because of Him through age-specific lessons and trusted adult leadership. Loaded with interactive activities, it addresses real issues kids face each day.<i class='fa fa-quote-right'></i></li>
+				<li><i class='fa fa-quote-left'></i>For ages 3 and under, depending on your location, there is a parents room and/or a supervised nursery. Whichever works best for you.<i class='fa fa-quote-right'></i></li></ul>
+				</li>
+				<li>GOOD COFFEE!
+				<ul><li><i class='fa fa-quote-left'></i>Did we happen to mention that we really like our coffee? You can even bring it into the auditorium.<i class='fa fa-quote-right'></i></li></ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class='o-pageContent__section p-expect-content__locations container'>
+			<div class='row'>
+					<% @listings.each do |location| %>
+					<div class='six columns center'>
+					  <h3 class='boxed'><%= location.name %></h3>
+					  <p>
+						<address><%= location.address %>,<br>
+								 <%= location.city%>, <%= location.province %></address>
+						<a class='phone' tabIndex="-1" href="tel:<%=location.phone%>"><%= location.phone %></a>
+						<br>
+						<strong>Sundays</strong> &mdash; <%= location.times %><br>
+					  </p>
+					</div>
+					<% end %>
+						</div>
+		</div>
+	</section>
+
+</div>

@@ -1,0 +1,16 @@
+<!-- This is the modal code for the messaging dialog -->
+<div id="messages" >
+  <div>
+    <a class="close-reveal-modal">&#215;</a> 
+  </div>
+<%= simple_form_for(Message.new) do |f| %>
+  <div>
+  	<%= f.input :name, placeholder: 'Your name?', label: false %>
+    <%= f.input :email, placeholder: 'And your email please?', label: false %>
+    <%= f.input :message, as: :text, placeholder: 'Enter your message here', label: false %>
+  </div>
+  <div>
+    <%= f.button :submit, 'Send a message', class: 'edit tiny button radius' %>
+  </div>
+  <% end %>
+</div>

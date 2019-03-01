@@ -1,0 +1,150 @@
+/*************************************************
+ * Component : Main Menu
+ ************************************************/
+
+.c-navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 10vh;
+  z-index: 100;
+  background: $white;
+
+  @include breakpoint(large) {
+    height: 75px;
+  }
+    
+  img.logo {
+    height: 8vh;
+    padding: 1vh;
+
+    @include breakpoint(large) {
+      height: 55px;
+      padding: 10px;
+    }
+  } // end img.logo
+
+  & .c-navbar__menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: $menu-width;
+    padding: 0 0;
+    margin: 10vh 0 0 0;
+    list-style: none;
+    background: $color5;
+    z-index: 0; /* Make sure the z-index is lower than the #page */
+    height: 100vh;
+    
+    a {
+      display: block;
+      color: #fff;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba( 255, 255, 255, 0.05 );
+      text-align: center;
+    }
+      ul li {
+      list-style: none;
+      width: 100%;
+      ul {display: none;} /* hide second level menu */
+    }
+
+    @include breakpoint(large) {
+      display: block;
+      z-index: 110;
+      width: 100%;
+      // background: $white;
+      height: 0;
+      margin: 0;
+      // padding: 10px 0;
+      float: right;
+
+      ul li:hover > ul { visibility: visible; }
+      a { color: $black; }
+      
+      ul {
+        float: right;
+
+        li {
+          float: left;
+          list-style: none;
+          padding: 0 15px;
+          position: relative;
+          width: auto;
+
+          &.has-dropdown > ul.is-dropdown {
+            background: $white;
+            font-size: 14px;
+            display: block;
+            visibility: hidden;
+            position: absolute;
+            width: 10vw;
+            transition: visibility 0.1s ease-in;
+            margin-top:11px;
+            left: 0;
+            li a { text-align: left; width: 100%; padding: 3px; }
+          }
+        }
+      }
+    }
+  } // end .c-navbar__menu
+} // end .c-navbar
+
+#toggle-menu {
+  position: fixed;
+  font-size: 4vh;
+  top: 2vh;
+  right: 3vh;
+}
+ 
+// #page {
+//   position: relative; // Set the position property so z-index will apply 
+//   z-index: 50; // Make sure this is higher than #menu 
+//   background: white;
+//   height: 100%;
+//   margin: 10vh 0 0 0;
+//   h1 {margin: 0;}
+// }
+
+
+
+@media only screen and (min-width: $desktop) { /* Overrides for Desktop size and larger */
+
+  #menu {
+    display: block;
+    z-index: 110;
+    width: 80%;
+    background: white;
+    height: 0;
+    margin: 0;
+    padding: 10px 0;
+    float: right;
+   ul li:hover > ul {visibility: visible;}
+    a {color: $black;}
+    ul {
+      float: right;
+      li {
+        float: left;
+        list-style: none;
+        padding: 0 15px;
+        position: relative;
+        width: auto;
+      }
+    }
+  }
+
+  #menu ul li ul {
+    background: $white;
+    font-size: 14px;
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    width: 10vw;
+    transition: visibility 0.1s ease-in;
+    margin-top:11px;
+    left: 0;
+    li a {text-align: left;width:100%;padding: 3px;}
+  }
+}

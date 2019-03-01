@@ -1,0 +1,163 @@
+<style media="screen">
+  section.hero {
+    background-image: url(<%= @location.photo.url(:slider) %>);
+    background-size: cover;
+  }
+</style>
+<div class="p-location">
+
+  <!-- Hero -->
+  <section class='hero'>
+    <%= image_tag(@location.logo.url(:original), class:'logo') %>
+      <!-- Service -->
+      <section class="service">
+        <div class='serviceTimes'>
+          <div class='join'>join us every</div>
+          <div class='day'>
+            <%= @location.day %>
+          </div>
+          <div class='times'>at
+            <%= @location.times %>
+          </div>
+        </div>
+
+      </section>
+  </section>
+
+  <!-- Welcome -->
+  <section class='welcome'>
+    <h1>Welcome</h1>
+    <%= image_tag(@location.pastor_photo.url(:mobile), class: 'pastor-photo') %>
+      <h2>to C3 Church
+        <%= @location.name %>
+      </h2>
+      <p>
+        <%= raw @location.welcome %>
+      </p>
+      <%= image_tag(@location.pastor_signature.url(:medium), class: 'signature') %>
+        <div class='signature'><strong><%= @location.pastor_name %></strong></br>
+          Campus Pastors</br>
+          C3 Church
+          <%= @location.name %>
+            </br>
+        </div>
+        <div class="social">
+          <%= link_to(image_tag("icons/Facebook.svg", class:"social"), @location.facebook.html_safe, target: '_blank') %>
+            <%= link_to(image_tag("icons/Twitter.svg", class:'social'), @location.twitter.html_safe, target: '_blank') %>
+              <%= link_to(image_tag("icons/Instagram.svg", class: 'social'), @location.instagram.html_safe, target: '_blank') %>
+        </div>
+  </section>
+
+  <!-- Directions -->
+  <section class='directions'>
+    <h1>Directions</h1>
+    <h2>See you soon</h2>
+    <%= image_tag(@location.logo.url(:original), class:'logo') %>
+      <div class='directions-body'>
+        <h3>Service Times:</h3>
+        <div class='details'>
+          <%= @location.day %>s at
+            <%= @location.times %>
+        </div>
+        <h3>Address:</h3>
+        <div class='details'>
+          <%= @location.address %>
+        </div>
+        <div class='details'>
+          <%= @location.city %>,
+            <%= @location.province %>
+        </div>
+        <h3>Phone:</h3>
+        <div class='details'>
+          <%= @location.phone %>
+        </div>
+        <h3>Email:</h3>
+        <div class='details'>
+          <a href="mailto: <%= @location.name.downcase %>@c3church.ca">
+            <%=@location.name.downcase%>@c3church.ca</a>
+        </div>
+        <div id='map'></div>
+      </div>
+  </section>
+
+  <!-- Podcasts -->
+  <section class='podcasts'>
+    <h1>Latest Podcasts</h1>
+    <h2>from
+      <%= @location.name %>
+    </h2>
+    <div class='playlist'>
+      <% Location.get_podcasts(@location).each do |podcast| %>
+        <div class='container'>
+          <div class='seven columns'>
+            <span class='author six columns'><%= podcast.author %></span> <span class='date six columns'><%= podcast.dateof.to_s(:podcast) %></span>
+            <%= content_tag( :div, audio_tag(podcast.source.exists? ? podcast.source : podcast.file_url, controls: true), class: 'audio twelve columns') %>
+          </div>
+          <div class='five columns title'><span class='title'><%= podcast.title %></span></div>
+        </div>
+        <% end %>
+    </div>
+  </section>
+
+  <!-- Connect -->
+  <section class='connect'>
+    <h1>Connect Groups</h1>
+    <h2>in
+      <%= @location.name %>
+    </h2>
+    <% Location.get_connect_groups(@location).each do |connect_group| %>
+      <div class='container'>
+        <div class='four columns'>
+          <div class='image-cropper'>
+            <%= image_tag(connect_group.avatar.url(:location)) %>
+          </div>
+        </div>
+        <div class='eight columns'>
+          <%= content_tag( :div, connect_group.name, class: 'name') %>
+            <div class='details'>
+              <%= content_tag :span, Date::DAYNAMES[connect_group.day.to_i].pluralize, class: 'weekday' if connect_group.day %>
+                <%= content_tag :span, connect_group.time.strftime("%l:%M %P"), class: "time" if connect_group.time %>
+                  </br>
+                  <%= content_tag :span, connect_group.address %>
+            </div>
+        </div>
+      </div>
+      <% end %>
+
+  </section>
+
+  <!-- Coming -->
+  <section class='coming'>
+    <h1>Coming Up</h1>
+    <h2>for
+      <%= @location.name %>
+    </h2>
+    <% Location.get_events(@location).each do |event| %>
+      <div class='container'>
+        <div class='five columns'>
+          <%= image_tag(event.image.url(:thumb)) %>
+        </div>
+        <div class='seven columns'>
+          <%= content_tag :div, event.title, class: 'name' %>
+          <%= content_tag :div, event.starttime.to_s(:podcast), class: 'date' %>
+        </div>
+      </div>
+      <% end %>
+  </section>
+</div>
+ <script>
+      function initMap() {
+        var location = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: location
+        });
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlhcI-WfSpG7oL07O4SRGVL_fM8HVJbBo&callback=initMap">
+    </script>

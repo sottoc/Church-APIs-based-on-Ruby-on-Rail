@@ -1,0 +1,11 @@
+<ul id='not_approved_list'>
+<% @connect_groups_not_approved.each do |group| %>
+  <li>
+    <%= check_box_tag group.approved %>
+    <%= "#{group.name} " %>
+    <%= Date::DAYNAMES[group.day.to_i].pluralize if group.day %>
+    <%= link_to content_tag(:i, " ", class:'fa fa-pencil'), edit_connect_group_path(group) %>
+    <%= link_to(content_tag( :i, " ", class: 'fa fa-trash'), group, method: :delete, data: { confirm: 'Are you sure?' }) %>
+  </li>
+  <% end %>
+</ul>

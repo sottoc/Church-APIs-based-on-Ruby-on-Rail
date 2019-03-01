@@ -1,0 +1,13 @@
+<%= simple_form_for(@user) do |f| %>
+<%= f.error_notification %>
+
+<%= content_tag :div, class: "form-inputs" do %>
+<%= f.input :name %>
+<%= f.input :email %>
+<%= f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline', checked: @user.role_ids.first unless current_user ==  @user %>
+<% end %>
+
+<%= content_tag :div, class: "form-actions" do %>
+<%= f.button :submit %>
+<% end %>
+<% end %>
